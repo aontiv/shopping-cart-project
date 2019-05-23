@@ -1,0 +1,170 @@
+$primary: #6390d4;
+$secondary: #ffb380;
+
+$enable-responsive-font-sizes: true;
+
+@import '../../node_modules/bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+/**
+ * SVG Background Animation
+ */
+  
+.daytime {
+    opacity: 1;
+    animation: 10000ms linear 0ms infinite normal none running daytime;
+}
+
+@keyframes daytime {
+    25%   { opacity: 1; }
+    50%   { opacity: 0; }
+    75%   { opacity: 0; }
+    100%  { opacity: 1; }
+}
+
+.nighttime {
+    opacity: 0;
+    animation: 10000ms linear 0ms infinite normal none running nighttime;
+}
+
+@keyframes nighttime {
+    25%   { opacity: 0; }
+    50%   { opacity: 1; }
+    75%   { opacity: 1; }
+    100%  { opacity: 0; }
+}
+
+/**
+ * Main Styles
+ */
+
+html,
+body {
+    color: $gray-700;
+}
+
+html,
+body,
+button {
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.05rem;
+}
+
+.login-btn {
+    font-size: 1.75rem;
+}
+
+.navbar-header {
+    font-size: 1.5rem;
+}
+
+.checkout,
+.logout,
+.total,
+.quantity {
+    font-size: 0.75rem;
+}
+
+.shopping-cart {
+    width: 0.85rem;
+}
+
+.product-card {
+    font-size: 0.85rem;
+    height: 26.25rem;
+    width: 18.75rem;
+}
+
+.inventory-quantity {
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+.cart-quantity {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+}
+
+.overlay {
+    height: 100%;
+    opacity: 0.5;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+
+.cart {
+    height: 100vh;
+    right: 0;
+    top: 0;
+    width: 18.75rem;
+}
+
+.cart-header {
+    font-size: 1.5rem;
+    height: 6.25rem;
+}
+
+.cart-item {
+    height: 6.5625rem;
+    font-size: 0.75rem;
+
+    input {
+        width: 2.5rem;
+    }
+
+    img {
+        width: 1rem;
+    }
+
+    img:hover {
+        cursor: pointer;
+    }
+}
+
+.totals {
+    font-size: 0.75rem;
+
+    button {
+        background-color: #fd7e14;
+    }
+}
+
+@media screen and (min-width: 576px) {
+
+}
+
+@media screen and (min-width: 768px) {
+    .login-btn {
+        height: 6.25rem;
+        font-size: 2rem;
+    }
+
+    .navbar-header {
+        font-size: 2rem;
+    }
+
+    .checkout,
+    .logout,
+    .total,
+    .quantity {
+        font-size: 1rem;
+    }
+
+    .shopping-cart {
+        width: 1.25rem;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .logo {
+        margin-bottom: 10rem;
+    }
+
+}
+
+@media screen and (min-width: 1200px) {
+
+}

@@ -15,6 +15,18 @@ module.exports = {
                 use: 'babel-loader',
                 include: path.resolve(__dirname, 'src', 'js'),
                 exclude: path.resolve(__dirname, 'node_modules')
+            },
+            {
+                test: /\.scss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader'],
+                include: path.resolve(__dirname, 'src', 'scss'),
+                exclude: path.resolve(__dirname, 'node_modules')
+            },
+            {
+                test: /\.(png|jpg|jpeg|svg)$/,
+                use: 'file-loader',
+                include: path.resolve(__dirname, 'src', 'img'),
+                exclude: path.resolve(__dirname, 'node_modules')
             }
         ]
     },

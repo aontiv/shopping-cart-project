@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build:dev": "webpack --color --mode=development",
+    "build:watch": "webpack --color --mode=development --watch",
     "test": "jest --colors --env=node"
   },
   "license": "ISC",
@@ -29,6 +30,9 @@
     "webpack-cli": "^3.3.2"
   },
   "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0"
