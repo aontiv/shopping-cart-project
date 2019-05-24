@@ -1,24 +1,30 @@
 import React, { Component, Fragment } from 'react';
 
 import AuthorizedNavbar from './AuthorizedNavbar';
-import CheckoutContainer from './CheckoutContainer';
+import Checkout from './Checkout';
 import Logo from './Logo';
 import ProductContainer from './ProductContainer';
 
+import { Context } from '../main';
+
 class MainContainer extends Component {
     render() {
-        const checkedOut = false;
-
         return (
-            <Fragment>
-                <AuthorizedNavbar />
-                <Logo />
+            <Context.Consumer>
                 {
-                    checkedOut
-                        ? <CheckoutContainer />
-                        : <ProductContainer />
+                    value => (
+                        <Fragment>
+                            <AuthorizedNavbar />
+                            <Logo />
+                            {
+                                value.control.checkedOut
+                                    ? <Checkout />
+                                    : <ProductContainer />
+                            }
+                        </Fragment>
+                    )
                 }
-            </Fragment>
+            </Context.Consumer>
         );
     }
 }

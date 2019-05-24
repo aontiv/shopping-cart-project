@@ -3,14 +3,15 @@ import React from 'react';
 const Product = props => (
     <li className='list-group-item p-0 border-0 mb-4 mx-md-2'>
         <div className='product-card card position-relative'>
-            <span className='inventory-quantity text-success pl-1'>{`x${props.product.qInventory}`}</span>
-            <img className='pt-1' src={props.product.image} alt={props.product.name} />
+            <span className='inventory-quantity text-success pl-1'>{`x${props.qInventory}`}</span>
+            <img className='pt-1' src={props.image} alt={props.name} />
             <div className='card-body'>
-                <p className='mb-0 mt-4'>{props.product.description}</p>
-                <p className='mb-0 mt-4 text-center'>Price: <span className='text-secondary'><strong>{props.product.price}</strong></span></p>
+                <h5 className='m-0'>{props.name}</h5>
+                <p className='mb-0 mt-1'>{props.description}</p>
+                <p className='mb-0 mt-2 text-center'>Price: <span className='text-secondary'><strong>${props.price}</strong></span></p>
             </div>
-            <a className='text-center' href=''>Add To Cart</a>
-            <span className='cart-quantity pl-1'>cart: {props.product.qCart}</span>
+            <a className='text-center' href=''>Add</a>
+            <span className='cart-quantity pl-1'>cart: {props.qCart}</span>
         </div>
     </li>
 );

@@ -132,6 +132,10 @@ button {
     }
 }
 
+.checkout-success {
+    height: 7.8125rem;
+}
+
 @media screen and (min-width: 576px) {
 
 }
@@ -160,7 +164,11 @@ button {
 
 @media screen and (min-width: 992px) {
     .logo {
-        margin-bottom: 10rem;
+        margin-bottom: 5rem;
+    }
+
+    .checkout-success {
+        height: 8.8125rem;
     }
 
 }

@@ -4,9 +4,15 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from './components/App';
 
+import Seed from './Seed';
+
+export const Context = React.createContext();
+
 reactDOM.render(
-    <Router>
-        <App />
-    </Router>
+    <Context.Provider value={Seed}>
+        <Router>
+            <App />
+        </Router>
+    </Context.Provider>
     , document.getElementById('root')
 );

@@ -3,19 +3,25 @@ import React, { Component, Fragment } from 'react';
 import ModalContainer from './ModalContainer';
 import ProductList from './ProductList';
 
+import { Context } from '../main';
+
 class ProductContainer extends Component {
     render() {
-        const showCart = true;
-
         return (
-            <Fragment>
-                <ProductList />
+            <Context.Consumer>
                 {
-                    showCart
-                        ? <ModalContainer />
-                        : null
+                    value => (
+                        <Fragment>
+                            <ProductList />
+                            {
+                                value.control.showCart
+                                    ? <ModalContainer />
+                                    : null
+                            }
+                        </Fragment>
+                    )
                 }
-            </Fragment>
+            </Context.Consumer>
         );
     }
 }
