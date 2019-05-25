@@ -7,8 +7,14 @@ class ModalContainer extends Component {
     render() {
         return (
             <Fragment>
-                <Overlay />
-                <Cart />
+                <Overlay
+                    onOverlayClick={this.props.onOverlayClick}
+                />
+                <Cart
+                    onDeleteClick={this.props.onDeleteClick}
+                    onMinusClick={this.props.onMinusClick}
+                    onPlusClick={this.props.onPlusClick}
+                />
             </Fragment>
         );
     }

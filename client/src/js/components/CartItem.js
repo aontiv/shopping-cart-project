@@ -8,7 +8,11 @@ const CartItem = props => (
         <div className='cart-item card border-0'>
             <div className='d-flex justify-content-between border-bottom'>
                 <span><strong>{props.name}</strong></span>
-                <button type="button" className="close">
+                <button
+                    className="close"
+                    onClick={() => props.onDeleteClick(props.id)}
+                    type="button"
+                >
                     <span>&times;</span>
                 </button>
             </div>
@@ -20,8 +24,8 @@ const CartItem = props => (
                             <input className='form-control mr-1 p-1 text-center' type='text' value={props.qCart} />
                         </form>
                         <div className='d-flex flex-column'>
-                            <img src={pIcon} alt='plus icon' />
-                            <img src={mIcon} alt='minus icon' />
+                            <img src={pIcon} alt='plus icon' onClick={() => props.onPlusClick(props.id)} />
+                            <img src={mIcon} alt='minus icon' onClick={() => props.onMinusClick(props.id)} />
                         </div>
                     </div>
                     <span className='text-success'>${props.price}</span>

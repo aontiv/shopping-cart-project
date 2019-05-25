@@ -10,7 +10,9 @@ class LoginContainer extends Component {
             <Fragment>
                 <UnauthorizedNavbar />
                 <Logo />
-                <Login />
+                <Login
+                    onLoginClick={this.props.onLoginClick}
+                />
             </Fragment>
         );
     }

@@ -21,7 +21,14 @@ const Helpers = () => {
         return subTotal + tax + shipping;
     };
 
+    const objectAndIndex = (items: Array<any>, id: number): Array<any> => {
+        const object = items.find(item => item.id === id);
+        const index = items.findIndex(item => item.id === id);
+        return [object, index];
+    };
+
     return {
+        objectAndIndex,
         salesTax,
         subtotal,
         total

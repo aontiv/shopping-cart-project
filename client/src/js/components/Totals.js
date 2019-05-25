@@ -1,7 +1,7 @@
 import React from 'react';
 import Helpers from '../Helpers';
 
-import { Context } from '../main';
+import { Context } from '../StateContext';
 
 const Totals = () => (
     <Context.Consumer>

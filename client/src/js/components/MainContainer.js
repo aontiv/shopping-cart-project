@@ -5,7 +5,7 @@ import Checkout from './Checkout';
 import Logo from './Logo';
 import ProductContainer from './ProductContainer';
 
-import { Context } from '../main';
+import { Context } from '../StateContext';
 
 class MainContainer extends Component {
     render() {
@@ -14,12 +14,23 @@ class MainContainer extends Component {
                 {
                     value => (
                         <Fragment>
-                            <AuthorizedNavbar />
+                            <AuthorizedNavbar
+                                onCartClick={this.props.onCartClick}
+                                onLogoutClick={this.props.onLogoutClick}
+                            />
                             <Logo />
                             {
                                 value.control.checkedOut
                                     ? <Checkout />
-                                    : <ProductContainer />
+                                    : (
+                                        <ProductContainer
+                                            onAddClick={this.props.onAddClick}
+                                            onDeleteClick={this.props.onDeleteClick}
+                                            onMinusClick={this.props.onMinusClick}
+                                            onOverlayClick={this.props.onOverlayClick}
+                                            onPlusClick={this.props.onPlusClick}
+                                        />
+                                    )
                             }
                         </Fragment>
                     )

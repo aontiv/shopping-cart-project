@@ -12,62 +12,16 @@ import p10 from '../img/10.png';
 import p11 from '../img/11.png';
 import p12 from '../img/12.png';
 
-const Seed = {
-    cartList: [
-        {
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id.',
-            id: 1,
-            name: 'Item 1',
-            price: 32.99,
-            qCart: 5
-        },
-        {
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id.',
-            id: 2,
-            name: 'Item 2',
-            price: 19.99,
-            qCart: 10
-        },
-        {
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id.',
-            id: 3,
-            name: 'Item 3',
-            price: 99.99,
-            qCart: 2
-        },
-        {
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id.',
-            id: 4,
-            name: 'Item 4',
-            price: 109.99,
-            qCart: 23
-        },
-        {
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id.',
-            id: 5,
-            name: 'Item 5',
-            price: 49.99,
-            qCart: 1
-        }
-    ],
-    control: {
-        checkedOut: false,
-        loggedIn: true,
-        showCart: true
-    },
-    meta: {
-        rate: 0.0757,
-        shipping: 10.99
-    },
-    productList: [
+const Seed = () => {
+    const productList = [
         {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id.',
             name: 'product 1',
             id: 1,
             image: p1,
             price: 67.99,
-            qCart: 3,
-            qInventory: 10,
+            qCart: 0,
+            qInventory: 100,
         },
         {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id.',
@@ -75,8 +29,8 @@ const Seed = {
             id: 2,
             image: p2,
             price: 67.99,
-            qCart: 3,
-            qInventory: 10,
+            qCart: 0,
+            qInventory: 100,
         },
         {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id.',
@@ -84,8 +38,8 @@ const Seed = {
             id: 3,
             image: p3,
             price: 67.99,
-            qCart: 3,
-            qInventory: 10,
+            qCart: 0,
+            qInventory: 100,
         },
         {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id.',
@@ -93,8 +47,8 @@ const Seed = {
             id: 4,
             image: p4,
             price: 67.99,
-            qCart: 3,
-            qInventory: 10,
+            qCart: 0,
+            qInventory: 100,
         },
         {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id.',
@@ -102,8 +56,8 @@ const Seed = {
             id: 5,
             image: p5,
             price: 67.99,
-            qCart: 3,
-            qInventory: 10,
+            qCart: 0,
+            qInventory: 100,
         },
         {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id.',
@@ -111,8 +65,8 @@ const Seed = {
             id: 6,
             image: p6,
             price: 67.99,
-            qCart: 3,
-            qInventory: 10,
+            qCart: 0,
+            qInventory: 100,
         },
         {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id.',
@@ -120,8 +74,8 @@ const Seed = {
             id: 7,
             image: p7,
             price: 67.99,
-            qCart: 3,
-            qInventory: 10,
+            qCart: 0,
+            qInventory: 100,
         },
         {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id.',
@@ -129,8 +83,8 @@ const Seed = {
             id: 8,
             image: p8,
             price: 67.99,
-            qCart: 3,
-            qInventory: 10,
+            qCart: 0,
+            qInventory: 100,
         },
         {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id.',
@@ -138,8 +92,8 @@ const Seed = {
             id: 9,
             image: p9,
             price: 67.99,
-            qCart: 3,
-            qInventory: 10,
+            qCart: 0,
+            qInventory: 100,
         },
         {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id.',
@@ -147,8 +101,8 @@ const Seed = {
             id: 10,
             image: p10,
             price: 67.99,
-            qCart: 3,
-            qInventory: 10,
+            qCart: 0,
+            qInventory: 100,
         },
         {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id.',
@@ -156,8 +110,8 @@ const Seed = {
             id: 11,
             image: p11,
             price: 67.99,
-            qCart: 3,
-            qInventory: 10,
+            qCart: 0,
+            qInventory: 100,
         },
         {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id.',
@@ -165,10 +119,12 @@ const Seed = {
             id: 12,
             image: p12,
             price: 67.99,
-            qCart: 3,
-            qInventory: 10,
+            qCart: 0,
+            qInventory: 100,
         },
-    ]
-};
+    ];
 
-export default Seed;
+    return { productList };
+}
+
+export default Seed();

@@ -4,10 +4,14 @@ import CartHeader from './CartHeader';
 import CartList from './CartList';
 import Totals from './Totals';
 
-const Cart = () => (
+const Cart = props => (
     <div className='cart position-fixed d-flex flex-column justify-content-center'>
         <CartHeader />
-        <CartList />
+        <CartList
+            onDeleteClick={props.onDeleteClick}
+            onMinusClick={props.onMinusClick}
+            onPlusClick={props.onPlusClick}
+        />
         <Totals />
     </div>
 );

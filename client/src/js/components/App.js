@@ -7,7 +7,7 @@ import '../../scss/custom.scss';
 import LoginContainer from './LoginContainer';
 import MainContainer from './MainContainer';
 
-import { Context } from '../main';
+import { Context } from '../StateContext';
 
 class App extends Component {
     render() {
@@ -18,12 +18,26 @@ class App extends Component {
                     <div className='app position-relative'>
                         <Route path='/' exact render={() => {
                             return value.control.loggedIn
-                                ? <MainContainer />
+                                ? (
+                                    <MainContainer
+                                        onAddClick={this.props.onAddClick}
+                                        onCartClick={this.props.onCartClick}
+                                        onDeleteClick={this.props.onDeleteClick}
+                                        onLogoutClick={this.props.onLogoutClick}
+                                        onMinusClick={this.props.onMinusClick}
+                                        onOverlayClick={this.props.onOverlayClick}
+                                        onPlusClick={this.props.onPlusClick}
+                                    />
+                                )
                                 : <Redirect to='/login' />
                         }} />
                         <Route path='/login' render={() => {
                             return !value.control.loggedIn
-                                ? <LoginContainer />
+                                ? (
+                                    <LoginContainer
+                                        onLoginClick={this.props.onLoginClick}
+                                    />
+                                )
                                 : <Redirect to='/' />
                         }} />
                     </div>
