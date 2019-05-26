@@ -20,11 +20,12 @@ class MainContainer extends Component {
                             />
                             <Logo />
                             {
-                                value.control.checkedOut
+                                value.checkedOut
                                     ? <Checkout />
                                     : (
                                         <ProductContainer
                                             onAddClick={this.props.onAddClick}
+                                            onCheckoutClick={this.props.onCheckoutClick}
                                             onDeleteClick={this.props.onDeleteClick}
                                             onMinusClick={this.props.onMinusClick}
                                             onOverlayClick={this.props.onOverlayClick}

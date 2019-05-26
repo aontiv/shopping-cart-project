@@ -2,6 +2,7 @@ import React from 'react';
 
 import Product from './Product';
 
+import Helpers from '../Helpers';
 import { Context } from '../StateContext';
 
 const ProductList = props => (
@@ -19,7 +20,7 @@ const ProductList = props => (
                                 image={product.image}
                                 onAddClick={props.onAddClick}
                                 price={product.price}
-                                qCart={product.qCart}
+                                qCart={Helpers.cartItem(value.cartList, product.id) ? Helpers.cartItem(value.cartList, product.id).qCart : 0}
                                 qInventory={product.qInventory}
                             />
                         ))

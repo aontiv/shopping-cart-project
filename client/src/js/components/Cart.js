@@ -12,7 +12,9 @@ const Cart = props => (
             onMinusClick={props.onMinusClick}
             onPlusClick={props.onPlusClick}
         />
-        <Totals />
+        <Totals
+            onCheckoutClick={props.onCheckoutClick}
+        />
     </div>
 );
 

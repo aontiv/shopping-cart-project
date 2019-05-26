@@ -10,7 +10,19 @@ const Product = props => (
                 <p className='mb-0 mt-1'>{props.description}</p>
                 <p className='mb-0 mt-2 text-center'>Price: <span className='text-secondary'><strong>${props.price}</strong></span></p>
             </div>
-            <a className='text-center' href='' onClick={event => props.onAddClick(event, props.id)}>Add</a>
+            <a
+                className='text-center'
+                href=''
+                onClick={event => props.onAddClick(event, {
+                    id: props.id,
+                    description: props.description,
+                    name: props.name,
+                    price: props.price,
+                    qCart: 1
+                })}
+            >
+                Add
+            </a>
             <span className='cart-quantity pl-1'>cart: {props.qCart}</span>
         </div>
     </li>

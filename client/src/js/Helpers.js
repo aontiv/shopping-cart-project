@@ -2,11 +2,11 @@
 
 const Helpers = () => {
     const subtotal = (items: Array<any>): number => {
-        const value = items.reduce((accumulator, current) => {
+        const total = items.reduce((accumulator, current) => {
             const value = current.price * current.qCart;
             return accumulator + value;
         }, 0);
-        return value;
+        return total;
     };
 
     const salesTax = (items: Array<any>, rate: number): number => {
@@ -18,17 +18,16 @@ const Helpers = () => {
     const total = (items: Array<any>, rate: number, shipping: number): number => {
         const subTotal = subtotal(items);
         const tax = salesTax(items, rate);
-        return subTotal + tax + shipping;
+        return items.length > 0 ? subTotal + tax + shipping : 0;
     };
 
-    const objectAndIndex = (items: Array<any>, id: number): Array<any> => {
-        const object = items.find(item => item.id === id);
-        const index = items.findIndex(item => item.id === id);
-        return [object, index];
+    const cartItem = (items: Array<any>, id: number): {} | void => {
+        const item = items.find(item => item.id === id);
+        return item;
     };
 
     return {
-        objectAndIndex,
+        cartItem,
         salesTax,
         subtotal,
         total

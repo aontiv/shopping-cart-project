@@ -16,9 +16,10 @@ class ProductContainer extends Component {
                                 onAddClick={this.props.onAddClick}
                             />
                             {
-                                value.control.showCart
+                                value.showCart
                                     ? (
                                         <ModalContainer
+                                            onCheckoutClick={this.props.onCheckoutClick}
                                             onDeleteClick={this.props.onDeleteClick}
                                             onMinusClick={this.props.onMinusClick}
                                             onOverlayClick={this.props.onOverlayClick}

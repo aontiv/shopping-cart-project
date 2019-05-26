@@ -10,7 +10,7 @@ const CartItem = props => (
                 <span><strong>{props.name}</strong></span>
                 <button
                     className="close"
-                    onClick={() => props.onDeleteClick(props.id)}
+                    onClick={() => props.onDeleteClick(props.id, props.qCart)}
                     type="button"
                 >
                     <span>&times;</span>

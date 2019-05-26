@@ -3,7 +3,7 @@ import Helpers from '../Helpers';
 
 import { Context } from '../StateContext';
 
-const Totals = () => (
+const Totals = props => (
     <Context.Consumer>
         {
             value => (
@@ -24,7 +24,7 @@ const Totals = () => (
                         <p className='d-flex justify-content-between m-0'>
                             <span>shipping + taxes:</span>
                             <span>
-                                ${value.meta.shipping}
+                                ${value.cartList.length > 0 ? value.meta.shipping : '0.00'}
                             </span>
                         </p>
                         <p className='d-flex justify-content-between m-0 border-bottom'>
@@ -33,7 +33,7 @@ const Totals = () => (
                                 ${Helpers.total(value.cartList, value.meta.rate, value.meta.shipping).toFixed(2)}
                             </span>
                         </p>
-                        <button className='btn btn-block rounded-0 mt-1 text-white' type='button'>Checkout</button>
+                        <button className='btn btn-block rounded-0 mt-1 text-white' type='button' onClick={props.onCheckoutClick}>Checkout</button>
                     </div>
                 </div>
             )

@@ -11,6 +11,7 @@ class ModalContainer extends Component {
                     onOverlayClick={this.props.onOverlayClick}
                 />
                 <Cart
+                    onCheckoutClick={this.props.onCheckoutClick}
                     onDeleteClick={this.props.onDeleteClick}
                     onMinusClick={this.props.onMinusClick}
                     onPlusClick={this.props.onPlusClick}

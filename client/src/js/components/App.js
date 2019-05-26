@@ -17,11 +17,12 @@ class App extends Component {
                   value => (
                     <div className='app position-relative'>
                         <Route path='/' exact render={() => {
-                            return value.control.loggedIn
+                            return value.loggedIn
                                 ? (
                                     <MainContainer
                                         onAddClick={this.props.onAddClick}
                                         onCartClick={this.props.onCartClick}
+                                        onCheckoutClick={this.props.onCheckoutClick}
                                         onDeleteClick={this.props.onDeleteClick}
                                         onLogoutClick={this.props.onLogoutClick}
                                         onMinusClick={this.props.onMinusClick}
@@ -32,7 +33,7 @@ class App extends Component {
                                 : <Redirect to='/login' />
                         }} />
                         <Route path='/login' render={() => {
-                            return !value.control.loggedIn
+                            return !value.loggedIn
                                 ? (
                                     <LoginContainer
                                         onLoginClick={this.props.onLoginClick}

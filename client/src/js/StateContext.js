@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import Helpers from './Helpers';
-
 import App from './components/App';
 
 export const Context = React.createContext();
@@ -11,127 +9,157 @@ import Seed from './Seed';
 class StateContext extends Component {
     state = {
         cartList: [],
-        control: {
-            checkedOut: false,
-            loggedIn: false,
-            showCart: false
-        },
+        checkedOut: false,
+        loggedIn: false,
         meta: {
             rate: 0.0757,
             shipping: 10.99
         },
-        productList: Seed.productList
+        productList: Seed.productList,
+        showCart: false
     };
 
     onLoginClick = () => {
-        this.setState(state => ({
-            control: {
-                ...state.control,
-                loggedIn: true
-            }
-        }));
+        this.setState({ loggedIn: true });
     };
 
     onLogoutClick = event => {
-        event.preventDefault();
-        this.setState(state => ({
-            control: {
-                ...state.control,
-                loggedIn: false
-            }
-        }));
+        if (event) event.preventDefault();
+        this.resetState();
     };
 
     onCartClick = event => {
-        event.preventDefault()
-        this.setState(state => ({
-            control: {
-                ...state.control,
-                showCart: true
-            }
-        }));
+        event.preventDefault();
+        this.setState({ showCart: true });
     };
 
     onOverlayClick = () => {
-        this.setState(state => ({
-            control: {
-                ...state.control,
-                showCart: false
-            }
-        }));
+        this.setState({ showCart: false });
     };
 
-    onAddClick = (event, id) => {
+    onAddClick = (event, newItem) => {
         event.preventDefault();
-        const product = this.state.productList.find(product => product.id === id);
-        const inCart = this.state.cartList.findIndex(item => item.id === id);
+        const inCart = this.state.cartList.findIndex(item => item.id === newItem.id);
 
         if (inCart === -1) {
-            this.setState(state => ({
-                cartList: [
-                    ...state.cartList,
-                    {
-                        description: product.description,
-                        id: product.id,
-                        name: product.name,
-                        price: product.price,
-                        qCart: product.qCart
-                    }
-                ]
-            }));
+            const cartList = this.state.cartList.concat([newItem]);
+            this.setState({ cartList });
+            this.decrementQInventory(newItem.id);
         }
-    };
-
-    onDeleteClick = id => {
-        const cartList = this.state.cartList.filter(item => item.id !== id);
-        this.setState({ cartList });
     };
 
     onPlusClick = id => {
-        const [ product, pIndex ] = Helpers.objectAndIndex(this.state.productList, id);
-        const [ item, iIndex ] = Helpers.objectAndIndex(this.state.cartList, id);
-
-        if (item.qCart < 100) {
-            product.qCart++;
-            product.qInventory--;
-            item.qCart++;
-
-            this.setState(state => ({
-                cartList: [
-                    ...state.cartList.slice(0, iIndex),
-                    item,
-                    ...state.cartList.slice(iIndex + 1)
-                ],
-                productList: [
-                    ...state.productList.slice(0, pIndex),
-                    product,
-                    ...state.productList.slice(pIndex + 1)
-                ]
-            }));
-        }
+        this.incrementQCart(id);
+        this.decrementQInventory(id);
     };
 
     onMinusClick = id => {
-        const [ product, pIndex ] = Helpers.objectAndIndex(this.state.productList, id);
-        const [ item, iIndex ] = Helpers.objectAndIndex(this.state.cartList, id);
+        this.decrementQCart(id);
+        this.incrementQInventory(id);
+    };
 
-        if (item.qCart > 0) {
-            product.qCart--;
-            product.qInventory++;
-            item.qCart--;
+    onDeleteClick = (id, amount) => {
+        const cartList = this.state.cartList.filter(item => item.id !== id);
+        this.setState({ cartList });
+        this.restoreQInventory(id, amount);
+    };
 
-            this.setState(state => ({
+    onCheckoutClick = () => {
+        if (this.state.cartList.length > 0) {
+            this.setState({ checkedOut: true, cartList: [] });
+            window.setTimeout(() => {
+                this.onLogoutClick();
+                this.resetState();
+            }, 2000);
+        }
+    };
+
+    restoreQInventory = (id, amount) => {
+        const product = this.state.productList.find(product => product.id === id);
+        const productIndex = this.state.productList.findIndex(product => product.id === id);
+
+        this.setState({
+            productList: [
+                ...this.state.productList.slice(0, productIndex),
+                { ...product, qInventory: product.qInventory + amount},
+                ...this.state.productList.slice(productIndex + 1)
+            ]
+        });
+    };
+
+    incrementQCart = id => {
+        const item = this.state.cartList.find(item => item.id === id);
+        const itemIndex = this.state.cartList.findIndex(item => item.id === id);
+        const product = this.state.productList.find(product => product.id === id);
+
+        if (product.qInventory > 0) {
+            this.setState({
                 cartList: [
-                    ...state.cartList.slice(0, iIndex),
-                    item,
-                    ...state.cartList.slice(iIndex + 1)
-                ],
-                productList: [
-                    ...state.productList.slice(0, pIndex),
-                    product,
-                    ...state.productList.slice(pIndex + 1)
+                    ...this.state.cartList.slice(0, itemIndex),
+                    { ...item, qCart: item.qCart + 1 },
+                    ...this.state.cartList.slice(itemIndex + 1)
                 ]
-            }));
+            });
+        }
+    };
+
+    resetState = () => {
+        this.setState({
+            cartList: [],
+            checkedOut: false,
+            loggedIn: false,
+            meta: {
+                rate: 0.0757,
+                shipping: 10.99
+            },
+            productList: Seed.productList,
+            showCart: false
+        });
+    };
+
+    decrementQCart = id => {
+        const item = this.state.cartList.find(item => item.id === id);
+        const itemIndex = this.state.cartList.findIndex(item => item.id === id);
+        const product = this.state.productList.find(product => product.id === id);
+
+        if (product.qInventory < 99) {
+            this.setState({
+                cartList: [
+                    ...this.state.cartList.slice(0, itemIndex),
+                    { ...item, qCart: item.qCart - 1 },
+                    ...this.state.cartList.slice(itemIndex + 1)
+                ]
+            });
+        }
+    };
+
+    incrementQInventory = id => {
+        const product = this.state.productList.find(product => product.id === id);
+        const productIndex = this.state.productList.findIndex(product => product.id === id);
+
+        if (product.qInventory < 99) {
+            this.setState({
+                productList: [
+                    ...this.state.productList.slice(0, productIndex),
+                    { ...product, qInventory: product.qInventory + 1 },
+                    ...this.state.productList.slice(productIndex + 1)
+                ]
+            });
+        }
+    };
+
+    decrementQInventory = id => {
+        const product = this.state.productList.find(product => product.id === id);
+        const productIndex = this.state.productList.findIndex(product => product.id === id);
+
+        if (product.qInventory > 0) {
+            this.setState({
+                productList: [
+                    ...this.state.productList.slice(0, productIndex),
+                    { ...product, qInventory: product.qInventory - 1 },
+                    ...this.state.productList.slice(productIndex + 1)
+                ]
+            });
         }
     };
 
@@ -141,6 +169,7 @@ class StateContext extends Component {
                 <App
                     onAddClick={this.onAddClick}
                     onCartClick={this.onCartClick}
+                    onCheckoutClick={this.onCheckoutClick}
                     onDeleteClick={this.onDeleteClick}
                     onLoginClick={this.onLoginClick}
                     onLogoutClick={this.onLogoutClick}

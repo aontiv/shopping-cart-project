@@ -20,7 +20,6 @@ const Seed = () => {
             id: 1,
             image: p1,
             price: 67.99,
-            qCart: 0,
             qInventory: 100,
         },
         {
@@ -29,7 +28,6 @@ const Seed = () => {
             id: 2,
             image: p2,
             price: 67.99,
-            qCart: 0,
             qInventory: 100,
         },
         {
@@ -38,7 +36,6 @@ const Seed = () => {
             id: 3,
             image: p3,
             price: 67.99,
-            qCart: 0,
             qInventory: 100,
         },
         {
@@ -47,7 +44,6 @@ const Seed = () => {
             id: 4,
             image: p4,
             price: 67.99,
-            qCart: 0,
             qInventory: 100,
         },
         {
@@ -56,7 +52,6 @@ const Seed = () => {
             id: 5,
             image: p5,
             price: 67.99,
-            qCart: 0,
             qInventory: 100,
         },
         {
@@ -65,7 +60,6 @@ const Seed = () => {
             id: 6,
             image: p6,
             price: 67.99,
-            qCart: 0,
             qInventory: 100,
         },
         {
@@ -74,7 +68,6 @@ const Seed = () => {
             id: 7,
             image: p7,
             price: 67.99,
-            qCart: 0,
             qInventory: 100,
         },
         {
@@ -83,7 +76,6 @@ const Seed = () => {
             id: 8,
             image: p8,
             price: 67.99,
-            qCart: 0,
             qInventory: 100,
         },
         {
@@ -92,7 +84,6 @@ const Seed = () => {
             id: 9,
             image: p9,
             price: 67.99,
-            qCart: 0,
             qInventory: 100,
         },
         {
@@ -101,7 +92,6 @@ const Seed = () => {
             id: 10,
             image: p10,
             price: 67.99,
-            qCart: 0,
             qInventory: 100,
         },
         {
@@ -110,7 +100,6 @@ const Seed = () => {
             id: 11,
             image: p11,
             price: 67.99,
-            qCart: 0,
             qInventory: 100,
         },
         {
@@ -119,7 +108,6 @@ const Seed = () => {
             id: 12,
             image: p12,
             price: 67.99,
-            qCart: 0,
             qInventory: 100,
         },
     ];
