@@ -24,7 +24,12 @@ module.exports = {
             },
             {
                 test: /\.(png|jpg|jpeg|svg)$/,
-                use: 'file-loader',
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: { outputPath: '../media/' }
+                    }
+                ],
                 include: path.resolve(__dirname, 'src', 'img'),
                 exclude: path.resolve(__dirname, 'node_modules')
             }

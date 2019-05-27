@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import App from './components/App';
 
+import Client from './Client';
+
 export const Context = React.createContext();
 
 import Seed from './Seed';
@@ -19,8 +21,22 @@ class StateContext extends Component {
         showCart: false
     };
 
+    componentDidMount() {
+        Client.status()
+            .then(response => {
+                if (response.status === 200) {
+                    this.setState({ loggedIn: true });
+                }
+            });
+    }
+
     onLoginClick = () => {
-        this.setState({ loggedIn: true });
+        Client.login()
+            .then(response => {
+                if (response.status === 200) {
+                    this.setState({ loggedIn: true });
+                }
+            });
     };
 
     onLogoutClick = event => {

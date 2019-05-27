@@ -1,3 +1,4 @@
 dist/
+.venv/
 design/
 node_modules/
