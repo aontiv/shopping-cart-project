@@ -1,10 +1,8 @@
 import React, { Component, Fragment } from 'react';
-
 import AuthorizedNavbar from './AuthorizedNavbar';
 import Checkout from './Checkout';
 import Logo from './Logo';
 import ProductContainer from './ProductContainer';
-
 import { Context } from '../StateContext';
 
 class MainContainer extends Component {

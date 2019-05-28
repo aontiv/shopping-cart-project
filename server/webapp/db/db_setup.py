@@ -1,4 +1,3 @@
-import json
 from webapp.server import app
 from flask_sqlalchemy import SQLAlchemy
 
@@ -8,13 +7,12 @@ db = SQLAlchemy(app)
 
 class Cart(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    _id = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String, nullable=False)
     name = db.Column(db.String, nullable=False)
     price = db.Column(db.Float, nullable=False)
     qCart = db.Column(db.Integer, nullable=False)
 
-    productId = db.Column(db.Integer, db.ForeignKey('product.id'))
+    _id = db.Column(db.Integer, db.ForeignKey('product.id'))
 
     def __repr__(self):
         return '<Cart %r' % self.name

@@ -1,9 +1,6 @@
 import React from 'react';
-
 import shoppingCart from '../../img/shopping-cart-solid.svg';
-
 import Helpers from '../Helpers';
-
 import { Context } from '../StateContext';
 
 const AuthorizedNavbar = props => (

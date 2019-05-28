@@ -9,7 +9,7 @@ $enable-responsive-font-sizes: true;
 /**
  * SVG Background Animation
  */
-  
+
 .daytime {
     opacity: 1;
     animation: 10000ms linear 0ms infinite normal none running daytime;
@@ -147,10 +147,6 @@ button {
     height: 7.8125rem;
 }
 
-@media screen and (min-width: 576px) {
-
-}
-
 @media screen and (min-width: 768px) {
     .login-btn {
         font-size: 2rem;
@@ -180,9 +176,5 @@ button {
     .checkout-success {
         height: 8.8125rem;
     }
-
-}
-
-@media screen and (min-width: 1200px) {
 
 }

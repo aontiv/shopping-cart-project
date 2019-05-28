@@ -1,5 +1,4 @@
 import React from 'react';
-
 import pIcon from '../../img/plus-square-solid.svg';
 import mIcon from '../../img/minus-square-solid.svg';
 
@@ -20,9 +19,7 @@ const CartItem = props => (
                 <p className='m-0'>{props.description}</p>
                 <div className='d-flex flex-column justify-content-between'>
                     <div className='d-flex'>
-                        <form>
-                            <input className='form-control mr-1 p-1 text-center' type='text' value={props.qCart} />
-                        </form>
+                        <p className='mr-1 p-1 text-center lead'>{props.qCart}</p>
                         <div className='d-flex flex-column'>
                             <img src={pIcon} alt='plus icon' onClick={() => props.onPlusClick(props._id)} />
                             <img src={mIcon} alt='minus icon' onClick={() => props.onMinusClick(props._id)} />

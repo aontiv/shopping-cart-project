@@ -22,7 +22,7 @@ const Helpers = () => {
     };
 
     const cartItem = (items: Array<any>, id: number): {} | void => {
-        const item = items.find(item => item.id === id);
+        const item = items.find(item => item._id === id);
         return item;
     };
 

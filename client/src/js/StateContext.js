@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-
 import App from './components/App';
-
 import Client from './Client';
 
 export const Context = React.createContext();
-
-// import Seed from './Seed';
 
 class StateContext extends Component {
     state = {
@@ -26,7 +22,11 @@ class StateContext extends Component {
             .then(response => response.json())
             .then(data => {
                 if (!data.message) {
-                    this.setState({ loggedIn: true, productList: data.productList });
+                    this.setState({
+                        loggedIn: true,
+                        productList: data.productList,
+                        cartList: data.cartList
+                    });
                 }
                 else {
                     console.log(data.message); // eslint-disable-line
@@ -38,7 +38,11 @@ class StateContext extends Component {
         Client.login()
             .then(response => response.json())
             .then(data => {
-                this.setState({ loggedIn: true, productList: data.productList })
+                this.setState({
+                    loggedIn: true,
+                    productList: data.productList,
+                    cartList: data.cartList
+                });
             });
     };
 
@@ -60,29 +64,41 @@ class StateContext extends Component {
 
     onAddClick = (event, newItem) => {
         event.preventDefault();
-        const inCart = this.state.cartList.findIndex(item => item.id === newItem.id);
+        const inCart = this.state.cartList.findIndex(item => item._id === newItem._id);
 
         if (inCart === -1) {
             const cartList = this.state.cartList.concat([newItem]);
             this.setState({ cartList });
-            this.decrementQInventory(newItem.id);
+            this.decrementQInventory(newItem._id);
+
+            Client.addItem(newItem);
+            Client.decrementInventory(newItem._id);
         }
     };
 
     onPlusClick = id => {
         this.incrementQCart(id);
         this.decrementQInventory(id);
+
+        Client.incrementCart(id);
+        Client.decrementInventory(id);
     };
 
     onMinusClick = id => {
         this.decrementQCart(id);
         this.incrementQInventory(id);
+
+        Client.decrementCart(id);
+        Client.incrementInventory(id);
     };
 
     onDeleteClick = (id, amount) => {
-        const cartList = this.state.cartList.filter(item => item.id !== id);
+        const cartList = this.state.cartList.filter(item => item._id !== id);
         this.setState({ cartList });
         this.restoreQInventory(id, amount);
+
+        Client.deleteItem(id);
+        Client.restoreInventory(id, amount);
     };
 
     onCheckoutClick = () => {
@@ -91,13 +107,15 @@ class StateContext extends Component {
             window.setTimeout(() => {
                 this.onLogoutClick();
                 this.resetState();
+
+                Client.logout();
             }, 2000);
         }
     };
 
     restoreQInventory = (id, amount) => {
-        const product = this.state.productList.find(product => product.id === id);
-        const productIndex = this.state.productList.findIndex(product => product.id === id);
+        const product = this.state.productList.find(product => product._id === id);
+        const productIndex = this.state.productList.findIndex(product => product._id === id);
 
         this.setState({
             productList: [
@@ -109,9 +127,9 @@ class StateContext extends Component {
     };
 
     incrementQCart = id => {
-        const item = this.state.cartList.find(item => item.id === id);
-        const itemIndex = this.state.cartList.findIndex(item => item.id === id);
-        const product = this.state.productList.find(product => product.id === id);
+        const item = this.state.cartList.find(item => item._id === id);
+        const itemIndex = this.state.cartList.findIndex(item => item._id === id);
+        const product = this.state.productList.find(product => product._id === id);
 
         if (product.qInventory > 0) {
             this.setState({
@@ -139,9 +157,9 @@ class StateContext extends Component {
     };
 
     decrementQCart = id => {
-        const item = this.state.cartList.find(item => item.id === id);
-        const itemIndex = this.state.cartList.findIndex(item => item.id === id);
-        const product = this.state.productList.find(product => product.id === id);
+        const item = this.state.cartList.find(item => item._id === id);
+        const itemIndex = this.state.cartList.findIndex(item => item._id === id);
+        const product = this.state.productList.find(product => product._id === id);
 
         if (product.qInventory < 99) {
             this.setState({
@@ -155,8 +173,8 @@ class StateContext extends Component {
     };
 
     incrementQInventory = id => {
-        const product = this.state.productList.find(product => product.id === id);
-        const productIndex = this.state.productList.findIndex(product => product.id === id);
+        const product = this.state.productList.find(product => product._id === id);
+        const productIndex = this.state.productList.findIndex(product => product._id === id);
 
         if (product.qInventory < 99) {
             this.setState({
@@ -170,8 +188,8 @@ class StateContext extends Component {
     };
 
     decrementQInventory = id => {
-        const product = this.state.productList.find(product => product.id === id);
-        const productIndex = this.state.productList.findIndex(product => product.id === id);
+        const product = this.state.productList.find(product => product._id === id);
+        const productIndex = this.state.productList.findIndex(product => product._id === id);
 
         if (product.qInventory > 0) {
             this.setState({
@@ -199,7 +217,7 @@ class StateContext extends Component {
                     onPlusClick={this.onPlusClick}
                 />
             </Context.Provider>
-        );
+        )
     }
 }
 

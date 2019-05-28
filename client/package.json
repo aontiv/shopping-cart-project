@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build:dev": "webpack --color --mode=development",
+    "build:prod": "webpack --color -p",
     "build:watch": "webpack --color --mode=development --watch",
     "flow": "flow",
     "test": "jest --colors --env=node"

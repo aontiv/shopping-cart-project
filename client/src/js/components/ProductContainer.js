@@ -1,8 +1,6 @@
 import React, { Component, Fragment } from 'react';
-
 import ModalContainer from './ModalContainer';
 import ProductList from './ProductList';
-
 import { Context } from '../StateContext';
 
 class ProductContainer extends Component {

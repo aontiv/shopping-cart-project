@@ -1,5 +1,4 @@
 import React from 'react';
-
 import CartHeader from './CartHeader';
 import CartList from './CartList';
 import Totals from './Totals';

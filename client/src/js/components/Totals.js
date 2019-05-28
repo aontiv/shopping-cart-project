@@ -1,6 +1,5 @@
 import React from 'react';
 import Helpers from '../Helpers';
-
 import { Context } from '../StateContext';
 
 const Totals = props => (

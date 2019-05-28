@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react';
-
 import Cart from './Cart';
 import Overlay from './Overlay';
 

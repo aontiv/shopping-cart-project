@@ -1,7 +1,5 @@
 import React from 'react';
-
 import CartItem from './CartItem';
-
 import { Context } from '../StateContext';
 
 const CartList = props => (
