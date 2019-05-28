@@ -13,14 +13,14 @@ const ProductList = props => (
                     {
                         value.productList.map(product => (
                             <Product
-                                key={product.id}
-                                id={product.id}
+                                key={product._id}
+                                _id={product._id}
                                 description={product.description}
                                 name={product.name}
                                 image={product.image}
                                 onAddClick={props.onAddClick}
                                 price={product.price}
-                                qCart={Helpers.cartItem(value.cartList, product.id) ? Helpers.cartItem(value.cartList, product.id).qCart : 0}
+                                qCart={Helpers.cartItem(value.cartList, product._id) ? Helpers.cartItem(value.cartList, product._id).qCart : 0}
                                 qInventory={product.qInventory}
                             />
                         ))

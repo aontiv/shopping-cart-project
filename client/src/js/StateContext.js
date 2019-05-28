@@ -6,7 +6,7 @@ import Client from './Client';
 
 export const Context = React.createContext();
 
-import Seed from './Seed';
+// import Seed from './Seed';
 
 class StateContext extends Component {
     state = {
@@ -17,31 +17,36 @@ class StateContext extends Component {
             rate: 0.0757,
             shipping: 10.99
         },
-        productList: Seed.productList,
+        productList: [],
         showCart: false
     };
 
     componentDidMount() {
         Client.status()
-            .then(response => {
-                if (response.status === 200) {
-                    this.setState({ loggedIn: true });
+            .then(response => response.json())
+            .then(data => {
+                if (!data.message) {
+                    this.setState({ loggedIn: true, productList: data.productList });
+                }
+                else {
+                    console.log(data.message); // eslint-disable-line
                 }
             });
     }
 
     onLoginClick = () => {
         Client.login()
-            .then(response => {
-                if (response.status === 200) {
-                    this.setState({ loggedIn: true });
-                }
+            .then(response => response.json())
+            .then(data => {
+                this.setState({ loggedIn: true, productList: data.productList })
             });
     };
 
     onLogoutClick = event => {
         if (event) event.preventDefault();
         this.resetState();
+
+        Client.logout();
     };
 
     onCartClick = event => {
@@ -128,7 +133,7 @@ class StateContext extends Component {
                 rate: 0.0757,
                 shipping: 10.99
             },
-            productList: Seed.productList,
+            productList: [],
             showCart: false
         });
     };

@@ -14,7 +14,7 @@ const Product = props => (
                 className='text-center'
                 href=''
                 onClick={event => props.onAddClick(event, {
-                    id: props.id,
+                    _id: props._id,
                     description: props.description,
                     name: props.name,
                     price: props.price,

@@ -1,9 +1,9 @@
 from webapp.server import app
-from flask import make_response, session
+from flask import jsonify, session, redirect
 
 @app.route('/status')
 def status():
     if 'KEY' in session:
-        return 'logged in'
+        return redirect('/get_products')
     else:
-        return make_response('not logged in', 204)
+        return jsonify({ "message": "not logged in" })

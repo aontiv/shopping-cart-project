@@ -12,8 +12,8 @@ const CartList = props => (
                     {
                         value.cartList.map(item => (
                             <CartItem
-                                key={item.id}
-                                id={item.id}
+                                key={item._id}
+                                _id={item._id}
                                 description={item.description}
                                 name={item.name}
                                 onDeleteClick={props.onDeleteClick}

@@ -10,7 +10,7 @@ const CartItem = props => (
                 <span><strong>{props.name}</strong></span>
                 <button
                     className="close"
-                    onClick={() => props.onDeleteClick(props.id, props.qCart)}
+                    onClick={() => props.onDeleteClick(props._id, props.qCart)}
                     type="button"
                 >
                     <span>&times;</span>
@@ -24,8 +24,8 @@ const CartItem = props => (
                             <input className='form-control mr-1 p-1 text-center' type='text' value={props.qCart} />
                         </form>
                         <div className='d-flex flex-column'>
-                            <img src={pIcon} alt='plus icon' onClick={() => props.onPlusClick(props.id)} />
-                            <img src={mIcon} alt='minus icon' onClick={() => props.onMinusClick(props.id)} />
+                            <img src={pIcon} alt='plus icon' onClick={() => props.onPlusClick(props._id)} />
+                            <img src={mIcon} alt='minus icon' onClick={() => props.onMinusClick(props._id)} />
                         </div>
                     </div>
                     <span className='text-success'>${props.price}</span>
