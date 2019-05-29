@@ -8,7 +8,7 @@ def login():
     if request.method == 'POST':
         session['KEY'] = str(uuid.uuid4())
 
-        products_file = open('webapp/db/products.json', 'r')
+        products_file = open('/var/www/shopping-cart-project/webapp/db/products.json', 'r')
         products_dict = json.load(products_file)
 
         for product in products_dict['productList']:
